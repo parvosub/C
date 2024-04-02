@@ -7,7 +7,7 @@ int main(void)
 // declare time variables
 
 
-// ask user for time or popmdoro loop
+// ask u#ser for time or popmdoro loop
 
 
 // run count down time maybe, set brake timer, maybe set timer and brake time
