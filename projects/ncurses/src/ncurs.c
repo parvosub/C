@@ -16,7 +16,7 @@ initscr(); // Initialize the ncurses library
                
     getch(); // Wait for user input
 
-    endwin(); // Clean up and restore the termina
+    endwin(); // Clean up and restore the terminal
 
 
 return 0;
