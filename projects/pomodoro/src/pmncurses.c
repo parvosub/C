@@ -1,8 +1,33 @@
 #include <curses.h>
+#include <time.h> //for time function
 #include <unistd.h> //sleep function
 #include <ncurses.h> //ncurses library
-#include <string.h> //for strcmp function
 #include <stdlib.h> //for atoi
+
+void countdown(int minutes) {
+    int seconds = 0;
+    while (minutes > 0 || seconds > 0) {
+        clear();
+        mvprintw(0, 0, "%.2d:%.2d", minutes, seconds);
+        refresh();
+        sleep(1);
+
+        if (seconds == 0) {
+            if (minutes > 0) {
+                minutes--;
+                seconds = 59;
+            } else {
+                break;
+            }
+        } else {
+            seconds--;
+        }
+    }
+    clear();
+    mvprintw(0, 0, "Time to stop: 00:00");
+    refresh();
+    sleep(1);
+}
 
 int main() {
     initscr();
@@ -11,25 +36,14 @@ int main() {
     curs_set(TRUE);
 
     char input[100];
-    int seconds;
-
-    mvprintw(0, 0, "Enter time in seconds: ");
+    mvprintw(0, 0, "Enter time in minutes: ");
     refresh();
     mvgetstr(1, 0, input);
-    seconds = atoi(input);
+    int minutes = atoi(input); //atoi changes string to an int
 
-    while (seconds > 0) {
-        clear();
-        mvprintw(0, 0,"Time remaining: %d seconds", seconds);
-        refresh();
-        sleep(1);
-        seconds--;
-     }
+    countdown(minutes);
 
-    clear();
-    mvprintw(0, 0,"Time is up!");
-    refresh();
-    sleep(2);
+    beep(); //trigger system bell
 
     endwin();
     return 0;
