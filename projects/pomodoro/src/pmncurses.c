@@ -35,6 +35,9 @@ int main() {
     noecho();
     curs_set(TRUE);
 
+    int rows, cols;
+    getmaxyx(stdscr, rows, cols);
+
     char input[100];
     mvprintw(0, 0, "Enter time in minutes: ");
     refresh();
