@@ -32,7 +32,6 @@ void countdown(int minutes) {
 int main() {
     initscr();
     cbreak();
-    noecho();
     curs_set(TRUE);
 
     int rows, cols;
@@ -41,7 +40,8 @@ int main() {
     char input[100];
     mvprintw(0, 0, "Enter time in minutes: ");
     refresh();
-    mvgetstr(1, 0, input);
+    getnstr(input, sizeof(input) - 1);
+    echo();
     int minutes = atoi(input); //atoi changes string to an int
 
     countdown(minutes);

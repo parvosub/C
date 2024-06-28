@@ -13,7 +13,7 @@ void print_centered(WINDOW *win, int start_row, const char *message) {
     mvwprintw(win, start_row, start_col, "%s", message); // Print the message at the center
 }
 
-// Countdown function to display the countdown in the ncurses window
+//countdown loop function
 void countdown(int minutes) {
     int seconds = 0;
     while (minutes > 0 || seconds > 0) {
@@ -21,8 +21,8 @@ void countdown(int minutes) {
         int rows, cols;
         getmaxyx(stdscr, rows, cols);
         int start_row = rows / 2;
-        int start_col = cols / 2;
-        mvprintw(start_row, start_col, "%.2d:%.2d", minutes, seconds);
+        int start_cols = cols / 2;
+        mvprintw(start_row, start_cols, "%.2d:%.2d", minutes, seconds);
         refresh();
         sleep(1);
 
@@ -41,8 +41,8 @@ void countdown(int minutes) {
     int rows, cols;
     getmaxyx(stdscr, rows, cols);
     int start_row = rows / 2;
-    int start_col = cols / 2;
-    mvprintw(start_row, start_col, "Time to stop: 00:00");
+    int start_cols = cols / 2;
+    mvprintw(start_row, start_cols, "Time to stop: 00:00");
     refresh();
     sleep(1);
 }
@@ -63,12 +63,18 @@ int main() {
 
     int minutes = atoi(input); //atoi changes string to an input
     int start_rows = rows / 2;
-    countdown(minutes); // Call the countdown function directly
+    countdown(minutes);
 
     beep(); //system bell
 
     endwin();
 
-    return 0;
+return 0 ;
 }
+
+
+
+
+
+
 
